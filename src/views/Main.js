@@ -93,7 +93,7 @@ var Main = {
                     m(".tag-list", TagStream.list.map(function(tag, index) {
                         return m(".tag#tag-"+index, [
                             m("input", {onkeyup: this.enter.bind(tag), oninput: m.withAttr("value", function(value) {tag.domain = value}), value: tag.domain}),
-                            "@",
+                            "#",
                             m("input", {onkeyup: this.enter.bind(tag), oninput: m.withAttr("value", function(value) {tag.tag = value}), value: tag.tag}),
                             m("button", {onclick: this.add_input}, "+"),
                             m("button", {onclick: this.del_input}, "-")
