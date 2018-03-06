@@ -85,6 +85,13 @@ var Main = {
             TagStream.reset()
         }
     },
+    share: function(event) {
+        domain = event.target.parentNode.parentNode.children[0].value
+        tag = event.target.parentNode.parentNode.children[1].value
+        if (domain !="" && tag != "") {
+            window.open('https://'+domain+'/share?text='+encodeURIComponent("\n#"+tag),'hashtag_timeline_viewer_share_window','width=400,height=400');
+        }
+    },
     view: function() {
         return m(".tag_stream", [
             m(".loading.hidden", m("img[src='./loading.gif']")),
@@ -95,6 +102,7 @@ var Main = {
                             m("input", {onkeyup: this.enter.bind(tag), oninput: m.withAttr("value", function(value) {tag.domain = value}), value: tag.domain}),
                             "#",
                             m("input", {onkeyup: this.enter.bind(tag), oninput: m.withAttr("value", function(value) {tag.tag = value}), value: tag.tag}),
+                            m("a.share[href='#']", {onclick: this.share}, m("img[src='./mstdn.png']")),
                             m("button", {onclick: this.add_input}, "+"),
                             m("button", {onclick: this.del_input}, "-")
                         ])
