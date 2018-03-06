@@ -62,6 +62,13 @@ var TagStream = {
         var stream = []
 
         !flg.since ? document.querySelector(".loading").classList.remove("hidden") : null
+
+        var valid_cnt = 0
+        TagStream.list.map(function(tag) {
+            if (tag.domain!="" && tag.tag!="") {
+                valid_cnt++
+            }
+        })
         TagStream.list.map(function(tag) {
             if (tag.domain!="" && tag.tag!="") {
                 m.request({
@@ -77,7 +84,7 @@ var TagStream = {
                     }
 
                     done++
-                    if (done == TagStream.list.length) {
+                    if (done == valid_cnt) {
                         document.querySelector(".loading").classList.add("hidden")
                         TagStream._make_stream(stream, tag.domain)
                     }
@@ -85,7 +92,7 @@ var TagStream = {
                     console.log(e.message)
 
                     done++
-                    if (done == TagStream.list.length) {
+                    if (done == valid_cnt) {
                         document.querySelector(".loading").classList.add("hidden")
                         TagStream._make_stream(stream, tag.domain)
                     }
