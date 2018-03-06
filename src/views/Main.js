@@ -74,7 +74,7 @@ var Main = {
     date: function(date) {return (new Date(date)).toLocaleString()},
     more: function() {TagStream.more()},
     add_input: function(event) {
-        TagStream.add({domain: "", tag: event.target.previousSibling.value})
+        TagStream.add({domain: "", tag: event.target.previousSibling.previousSibling.value})
     },
     del_input: function(event) {
         id = event.target.parentNode.id.replace("tag-", "")
